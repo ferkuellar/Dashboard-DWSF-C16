@@ -17,7 +17,7 @@ let coinName = "bitcoin"
 
 
 function resData(coinName) {
-    new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         request('https://api.coingecko.com/api/v3/coins/' + coinName, function (error, response, body) {
             console.error('error:', error); // Print the error if one occurred
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -29,15 +29,14 @@ function resData(coinName) {
     });    
 };
 
-
-app.get('/', (req, res) => {
-    resData(coinName)
+app.get('/', async(req, res) => {
+    await resData(coinName)
     res.render('index', { mData } )
 });
 
-app.post('/', (req,res) => {
+app.post('/', async(req,res) => {
     coinName = req.body.selectCoin;
-    resData(coinName)
+    await resData(coinName)
     res.render('index', { mData } )
 });
 
