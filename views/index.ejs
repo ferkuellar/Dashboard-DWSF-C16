@@ -7,9 +7,46 @@
     <title>Visualizacion de Datos</title>
 </head>
 <body>
+    <form method="post">
+        <select name='selectCoin' onchange='this.form.submit()'>
+            <option>Selecciona una moneda</option>
+            <option value="avalanche-2">Avalanche (AVAX)</option>
+            <option value="binancecoin">Binance (BNB)</option>
+            <option value="bitcoin">Bitcoin (BTC) </option>
+            <option value="cardano">Cardano (ADA)</option>
+            <option value="decentraland">Decentraland (MANA)</option>
+            <option value="dogecoin">Dogecoin (DOGE)</option>
+            <option value="ethereum">Ethereum (ETH)</option>
+            <option value="ripple">Ripple (XRP)</option>
+            <option value="solana">Solana (SOL)</option>
+            <option value="tether">Tether (USDT)</option>
+            
+        </select>
+    </form>
+
     <div>
-        <% let finalData = JSON.stringify(mData) %>
-        <%- finalData %>
+        <p>
+            Positive Sentiment :
+            <%- mData.sentiment_votes_up_percentage %> %
+        </p>
+    </div>
+    <div>
+        <p>
+            High 24Hrs :
+            <%- mData.market_data.high_24h["usd"] %> 
+        </p>
+    </div>
+    <div>
+        <p>
+            Low 24Hrs :
+            <%- mData.market_data.low_24h["usd"] %> 
+        </p>
+    </div>
+    <div>
+        <p>
+            Market Cap 24Hr :
+            <%- mData.market_data.market_cap_change_percentage_24h %> %
+        </p>
     </div>
 </body>
 </html>

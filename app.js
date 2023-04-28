@@ -12,22 +12,34 @@ app.use(express.static(__dirname + '/public')); // __dirname es la ruta de donde
 app.set('view engine', 'ejs');  
 app.use(upload.array()); 
 
-
-
 let mData = ""
+let coinName = "bitcoin"
 
-request('https://api.coingecko.com/api/v3/coins/bitcoin', function (error, response, body) {
-    console.error('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', typeof body); // Print the HTML for the Google homepage.
-    mData = JSON.parse(body)
-    // console.log(mData)
-});
+
+function resData(coinName) {
+    new Promise((resolve, reject) => {
+        request('https://api.coingecko.com/api/v3/coins/' + coinName, function (error, response, body) {
+            console.error('error:', error); // Print the error if one occurred
+            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+            console.log('body:', typeof body); // Print the HTML for the Google homepage.
+            mData = JSON.parse(body)
+            // console.log(mData)
+        resolve(mData)
+        });
+    });    
+};
 
 
 app.get('/', (req, res) => {
-    res.render('index', {mData} )
-})
+    resData(coinName)
+    res.render('index', { mData } )
+});
+
+app.post('/', (req,res) => {
+    coinName = req.body.selectCoin;
+    resData(coinName)
+    res.render('index', { mData } )
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
