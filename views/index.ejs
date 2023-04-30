@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizacion de Datos</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
+
 <body>
     <form method="post">
         <select name='selectCoin' onchange='this.form.submit()'>
@@ -48,5 +50,64 @@
             <%- mData.market_data.market_cap_change_percentage_24h %> %
         </p>
     </div>
+
+    <div id="chart">
+
+    </div>
+
+
+<script>
+    let mCapData = '<%- JSON.stringify(mChart.market_caps) %>'
+    mCapData = String(mCapData)
+    mCapData = JSON.parse(mCapData)
+    // console.log(charData)
+
+    let mVolData = '<%- JSON.stringify(mChart.total_volumes) %>'
+    mVolData = String(mVolData)
+    mVolData = JSON.parse(mVolData)
+    var options = {
+        chart: {
+                height:300,
+                width:800,
+            type: 'area'
+        },
+        series: [{
+            name: 'Market Cap',
+            data: mCapData,
+            type: "area"
+        },
+        {
+            name: 'Total Volume',
+            data: mVolData,
+            type: "line"
+        }],
+
+        xaxis: {
+            type: "datetime"
+        },
+        dataLabels:{
+            enabled: false
+        },
+
+        yaxis:[{
+            title: {
+                text: 'Series A',
+            },
+        },
+        {
+            oposite: true,
+                title: {
+                    text: 'Series B',
+                },
+            },        
+        ]
+    }
+    
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    
+    chart.render();
+</script>
+
 </body>
+
 </html>
