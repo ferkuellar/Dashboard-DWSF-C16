@@ -4,110 +4,177 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//db.onlinewebfonts.com/c/02d8bfeaeb805e69f0b04e0f78697ec3?family=NHaasGroteskDSPro-65Md" rel="stylesheet" type="text/css"/> 
     <title>Visualizacion de Datos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/css/bootstrap-dark.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
-<body>
-    <form method="post">
-        <select name='selectCoin' onchange='this.form.submit()'>
-            <option>Selecciona una moneda</option>
-            <option value="avalanche-2">Avalanche (AVAX)</option>
-            <option value="binancecoin">Binance (BNB)</option>
-            <option value="bitcoin">Bitcoin (BTC) </option>
-            <option value="cardano">Cardano (ADA)</option>
-            <option value="decentraland">Decentraland (MANA)</option>
-            <option value="dogecoin">Dogecoin (DOGE)</option>
-            <option value="ethereum">Ethereum (ETH)</option>
-            <option value="ripple">Ripple (XRP)</option>
-            <option value="solana">Solana (SOL)</option>
-            <option value="tether">Tether (USDT)</option>
+    <body class="bg-image" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpaperaccess.com/full/2095724.png');
+    height: 100vh; ">
+        <div class = "mask gradient-custom">
+            <nav class="navbar navbar-expand-lg bg-info ">
+                <div class="container-fluid"></div>
+                    <form method="post">
+                        <select name='selectCoin' onchange='this.form.submit()'>
+                            <option>Selecciona una moneda</option>
+                            <option value="avalanche-2">Avalanche (AVAX)</option>
+                            <option value="binancecoin">Binance (BNB)</option>
+                            <option value="bitcoin">Bitcoin (BTC) </option>
+                            <option value="cardano">Cardano (ADA)</option>
+                            <option value="decentraland">Decentraland (MANA)</option>
+                            <option value="dogecoin">Dogecoin (DOGE)</option>
+                            <option value="ethereum">Ethereum (ETH)</option>
+                            <option value="ripple">Ripple (XRP)</option>
+                            <option value="solana">Solana (SOL)</option>
+                            <option value="tether">Tether (USDT)</option>
+                        </select>
+                    </form>
+                    <a  class="navbar-brand d-flex ml-auto display-2 text-white fs-2 fw-bold text-uppercase "
+                    style="font-family: 'NHaasGroteskDSPro-65Md'; text-shadow: 4px 4px #1a1a1a" href="#">Crypto DashBoard</a>
+                <div>
+            </nav>
             
-        </select>
-    </form>
+            <div class="fs-1 fw-bold m-3 text-Cpitalize 
+                style="
+                font-family: 'NHaasGroteskDSPro-65Md'; 
+                margin-top: 3px !important; 
+                margin-bottom: 0px !important;"> 
 
-    <div>
-        <p>
-            Positive Sentiment :
-            <%- mData.sentiment_votes_up_percentage %> %
-        </p>
-    </div>
-    <div>
-        <p>
-            High 24Hrs :
-            <%- mData.market_data.high_24h["usd"] %> 
-        </p>
-    </div>
-    <div>
-        <p>
-            Low 24Hrs :
-            <%- mData.market_data.low_24h["usd"] %> 
-        </p>
-    </div>
-    <div>
-        <p>
-            Market Cap 24Hr :
-            <%- mData.market_data.market_cap_change_percentage_24h %> %
-        </p>
-    </div>
+                <%- mData.name %>
+            </div>
 
-    <div id="chart">
+            <section class="row m-3 mb-0" style="margin-top: 2p !important;">
 
-    </div>
+                <!-- Capitalizacion de Mercado -->
+                <div class="card text-white text-center m-3" 
+                    style="
+                        margin-top: 0px !important; 
+                        width: 11rem;
+                        background-color: rgb(43,43,43)">
+                        <div class="card-body">
+                            <h6 class="card-title" 
+                                style="
+                                font-family: 'NHaasGroteskDSPro-65Md'"> Market Cap 24Hrs</h6>
+                                <p class="card-text fw-bold fs-5" style="color: aqua;">
+                                    Market Cap 24Hr :
+                                    <%- mData.market_data.market_cap_change_percentage_24h %> %
+                                </p>
+                        </div>
+                </div>
+
+                <!-- Precio Maximo de todos los tiempos -->
+                <div class="card text-white text-center m-3" 
+                    style="
+                        margin-top: 0px !important; 
+                        width: 11rem;
+                        background-color: rgb(43,43,43)">
+                        <div class="card-body">
+                            <h6 class="card-title" 
+                                style="
+                                font-family: 'NHaasGroteskDSPro-65Md'"> All time High</h6>
+                                <p class="card-text fw-bold fs-5" style="color: aqua;">
+                                    $ <%- mData.market_data.ath.usd %>
+                                </p>
+                        </div>
+                </div>
+
+                <!-- Precio Minimo de todos los tiempos -->
+                <div class="card text-white text-center m-3" 
+                    style="
+                        margin-top: 0px !important; 
+                        width: 11rem;
+                        background-color: rgb(43,43,43)">
+                        <div class="card-body">
+                            <h6 class="card-title" 
+                                style="
+                                font-family: 'NHaasGroteskDSPro-65Md'"> All time Low</h6>
+                                <p class="card-text fw-bold fs-5" style="color: aqua;">
+                                    $ <%- mData.market_data.atl.usd %>
+                                </p>
+                        </div>
+                </div>
 
 
-<script>
-    let mCapData = '<%- JSON.stringify(mChart.market_caps) %>'
-    mCapData = String(mCapData)
-    mCapData = JSON.parse(mCapData)
-    // console.log(charData)
 
-    let mVolData = '<%- JSON.stringify(mChart.total_volumes) %>'
-    mVolData = String(mVolData)
-    mVolData = JSON.parse(mVolData)
-    var options = {
-        chart: {
-                height:300,
-                width:800,
-            type: 'area'
-        },
-        series: [{
-            name: 'Market Cap',
-            data: mCapData,
-            type: "area"
-        },
-        {
-            name: 'Total Volume',
-            data: mVolData,
-            type: "line"
-        }],
+            </section>
+                    <p>
+                        Positive Sentiment :
+                        <%- mData.sentiment_votes_up_percentage %> %
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        High 24Hrs :
+                        <%- mData.market_data.high_24h["usd"] %> 
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Low 24Hrs :
+                        <%- mData.market_data.low_24h["usd"] %> 
+                    </p>
+                </div>
+                
 
-        xaxis: {
-            type: "datetime"
-        },
-        dataLabels:{
-            enabled: false
-        },
+                <div id="chart">
 
-        yaxis:[{
-            title: {
-                text: 'Series A',
+                </div>
+        </div>
+
+    <script>
+        let mCapData = '<%- JSON.stringify(mChart.market_caps) %>'
+        mCapData = String(mCapData)
+        mCapData = JSON.parse(mCapData)
+        // console.log(charData)
+
+        let mVolData = '<%- JSON.stringify(mChart.total_volumes) %>'
+        mVolData = String(mVolData)
+        mVolData = JSON.parse(mVolData)
+        var options = {
+            chart: {
+                    height:300,
+                    width:800,
+                type: 'line'
             },
-        },
-        {
-            oposite: true,
+            series: [{
+                name: 'Market Cap',
+                data: mCapData,
+                type: "area"
+            },
+            {
+                name: 'Total Volume',
+                data: mVolData,
+                type: "line"
+            }],
+
+            xaxis: {
+                type: "datetime"
+            }, dataLabels:{
+                enabled: false
+            },
+
+            yaxis: [
+            {
                 title: {
-                    text: 'Series B',
-                },
-            },        
-        ]
-    }
-    
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    
-    chart.render();
-</script>
+                    text: "Series A"
+                }
+            },
+            {
+                opposite: true,
+                title: {
+                    text: "Series B"
+                }
+            }
+            ],
+            colors: ['#0080ff','#00ff9d']
+        }
+        
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        
+        chart.render();
+    </script>
 
-</body>
+    </body>
 
-</html>
+    </html>
