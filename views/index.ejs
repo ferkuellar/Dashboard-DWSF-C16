@@ -56,8 +56,7 @@
                             <h6 class="card-title" 
                                 style="
                                 font-family: 'NHaasGroteskDSPro-65Md'"> Market Cap 24Hrs</h6>
-                                <p class="card-text fw-bold fs-5" style="color: aqua;">
-                                    Market Cap 24Hr :
+                                <p class="card-text fw-bold fs-5" style="color: #6f00ff;">
                                     <%- mData.market_data.market_cap_change_percentage_24h %> %
                                 </p>
                         </div>
@@ -73,7 +72,7 @@
                             <h6 class="card-title" 
                                 style="
                                 font-family: 'NHaasGroteskDSPro-65Md'"> All time High</h6>
-                                <p class="card-text fw-bold fs-5" style="color: aqua;">
+                                <p class="card-text fw-bold fs-5" style="color: #6f00ff;">
                                     $ <%- mData.market_data.ath.usd %>
                                 </p>
                         </div>
@@ -89,37 +88,90 @@
                             <h6 class="card-title" 
                                 style="
                                 font-family: 'NHaasGroteskDSPro-65Md'"> All time Low</h6>
-                                <p class="card-text fw-bold fs-5" style="color: aqua;">
+                                <p class="card-text fw-bold fs-5" style="color: #6f00ff;">
                                     $ <%- mData.market_data.atl.usd %>
                                 </p>
                         </div>
                 </div>
 
+                <!-- Sentiminetos positivos -->
+                <div class="card text-white text-center m-3" 
+                    style="
+                        margin-top: 0px !important; 
+                        width: 11rem;
+                        background-color: rgb(43,43,43)">
+                        <div class="card-body">
+                            <h6 class="card-title" 
+                                style="
+                                font-family: 'NHaasGroteskDSPro-65Md'"> Positive Sentiments</h6>
+                                <p class="card-text fw-bold fs-5" style="color: #6f00ff;">
+                                    <%- mData.sentiment_votes_up_percentage %> %
+                                </p>
+                        </div>
+                </div>
 
+                <!--precio mas alto las utlimas 24 horas-->
+                <div class="card text-white text-center m-3" 
+                    style="
+                        margin-top: 0px !important; 
+                        width: 11rem;
+                        background-color: rgb(43,43,43)">
+                        <div class="card-body">
+                            <h6 class="card-title" 
+                                style="
+                                font-family: 'NHaasGroteskDSPro-65Md'">24Hrs High</h6>
+                                <p class="card-text fw-bold fs-5" style="color: #3cff00;">
+                                    $ <%- mData.market_data.high_24h["usd"] %>
+                                </p>
+                        </div>
+                </div>
+
+                <!--precio mas bajo las utlimas 24 horas-->
+                <div class="card text-white text-center m-3" 
+                    style="
+                        margin-top: 0px !important; 
+                        width: 11rem;
+                        background-color: rgb(43,43,43)">
+                        <div class="card-body">
+                            <h6 class="card-title" 
+                                style="
+                                font-family: 'NHaasGroteskDSPro-65Md'">24Hrs Low</h6>
+                                <p class="card-text fw-bold fs-5" style="color: #ff0000;">
+                                    $ <%- mData.market_data.low_24h["usd"] %>
+                                </p>
+                        </div>
+                </div>
 
             </section>
-                    <p>
-                        Positive Sentiment :
-                        <%- mData.sentiment_votes_up_percentage %> %
-                    </p>
+            <div>
+                <!-- Encabezado del precio actual -->
+                <div class="texxt-white text-center" 
+                    style="
+                    font-family: 'NHaasGroteskDSPro-65Md';
+                    overflow: visible;
+                    height: 2px;
+                    margin-top: 1%;">
+                    Precio Actual
                 </div>
-                <div>
-                    <p>
-                        High 24Hrs :
-                        <%- mData.market_data.high_24h["usd"] %> 
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        Low 24Hrs :
-                        <%- mData.market_data.low_24h["usd"] %> 
-                    </p>
-                </div>
-                
 
-                <div id="chart">
-
+                <!-- Precio actual -->
+                <div style="
+                    font-family: 'NHaasGroteskDSPro-65Md';
+                    font-size: 90px;
+                    font-weight: 700;
+                    color: #ffffff;
+                    text-decoration: none solid #ffffff;
+                    text-align: center;
+                    ">
+                    $ <%- mData.market_data.current_price.usd %>
                 </div>
+            </div>
+
+
+
+            <div id="chart">
+
+            </div>
         </div>
 
     <script>
