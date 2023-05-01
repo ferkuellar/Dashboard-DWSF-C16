@@ -6,7 +6,7 @@ var multer = require('multer');
 var upload = multer();
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.json()); // for parsing JSON
+app.use(bodyParser.json()); // Para parsing JSON
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public')); // __dirname es la ruta de donde esta el directorio public
 app.set('view engine', 'ejs');  
